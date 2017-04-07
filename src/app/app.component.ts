@@ -5,7 +5,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsPage } from '../pages/tabs/tabs';
 import {HomePage} from '../pages/home/home';
-
+import {CameraTestPage} from '../pages/camera-test/camera-test';
+import {NetworkTestPage} from '../pages/network-test/network-test';
+import {NotificationTestPage} from '../pages/notification-test/notification-test';
+import {BarcodeTestPage} from '../pages/barcode-test/barcode-test';
+import {VibrationTestPage} from '../pages/vibration-test/vibration-test';
 
 @Component({
   templateUrl: 'app.html'
@@ -13,11 +17,17 @@ import {HomePage} from '../pages/home/home';
 export class MyApp {
   pages: Array<any>;
 
-  rootPage:any = TabsPage;
+  rootPage:any = HomePage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public menuCtrl: MenuController) {
     this.pages = [
-      {title: "Home", component: HomePage}
+      {title: "Home", component: TabsPage},
+      {title: "Tabs", component: HomePage},
+      {title: "Camera", component: CameraTestPage},
+      {title: "Network", component: NetworkTestPage},
+      {title: "Notification", component: NotificationTestPage},
+      {title: "Barcode", component: BarcodeTestPage},
+      {title: "Vibration", component: VibrationTestPage}
     ];
 
     platform.ready().then(() => {
@@ -29,7 +39,7 @@ export class MyApp {
   }
 
   openPage(page) {
-    this.menuCtrl.close();
     this.rootPage = page.component;
+    this.menuCtrl.close();
   }
 }
